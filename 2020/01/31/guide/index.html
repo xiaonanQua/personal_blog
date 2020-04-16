@@ -138,7 +138,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    6.6k 字
+                    7.2k 字
                   </span>
                 
 
@@ -148,7 +148,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    76
+                    82
                      分钟
                   </span>
                 
@@ -178,11 +178,12 @@
             
             <article class="markdown-body">
               <blockquote>
-<p>本篇团队服务器使用指南，主要解决用户远程使用服务器计算资源，多版本python管理等问题。</p>
+<p>本篇团队服务器使用指南，主要解决用户远程使用服务器计算资源，多版本python管理等问题。收录常见的服务器系统问题。github地址：<a href="https://github.com/xiaonanQua/serverdoc" target="_blank" rel="noopener">https://github.com/xiaonanQua/serverdoc</a></p>
 </blockquote>
 <blockquote>
 <p>@Author：小南</p>
 </blockquote>
+<a id="more"></a>
 <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><!-- TOC -->
 
 <ul>
@@ -205,7 +206,10 @@
 <li><a href="#214ssh连接操作">2.1.4、ssh连接操作</a></li>
 </ul>
 </li>
-<li><a href="#22windows系统">2.2、windows系统</a></li>
+<li><a href="#22windows系统">2.2、windows系统</a><ul>
+<li><a href="#221通过xshell使用密钥连接linux">2.2.1、通过Xshell使用密钥连接Linux</a></li>
+</ul>
+</li>
 <li><a href="#23-参考文献">2.3、 参考文献</a></li>
 </ul>
 </li>
@@ -268,22 +272,20 @@
 <li><p>watch -n 0.5 nvidia-smi  //终端命令，监督GPU情况，每0.5秒刷新</p>
 </li>
 </ul>
-<p>htop示例图，图像中每个参数含义可参照这篇博客。<a href="https://blog.csdn.net/freeking101/article/details/79173903" target="_blank" rel="noopener">htop中参数含义</a></p>
-<p><img src="guide/24.png" srcset="/img/loading.gif" alt></p>
-<p>nvidia-smi示例图，图像中每个参数含义可参照这篇博客。<a href="https://blog.csdn.net/C_chuxin/article/details/82993350" target="_blank" rel="noopener">nvidia-smi的参数含义</a></p>
-<p><img src="guide/25.png" srcset="/img/loading.gif" alt></p>
+<p>htop示例图，图像中每个参数含义可参照这篇博客。<a href="https://blog.csdn.net/freeking101/article/details/79173903" target="_blank" rel="noopener">htop中参数含义</a><br><img src="guide/24.png" srcset="/img/loading.gif" alt></p>
+<p>nvidia-smi示例图，图像中每个参数含义可参照这篇博客。<a href="https://blog.csdn.net/C_chuxin/article/details/82993350" target="_blank" rel="noopener">nvidia-smi的参数含义</a><br><img src="guide/25.png" srcset="/img/loading.gif" alt></p>
 <h2 id="1-2、用户类"><a href="#1-2、用户类" class="headerlink" title="1.2、用户类"></a>1.2、用户类</h2><blockquote>
 <p>用户分为Linux和windows两用户，这里只说明各个用户如何阅读下文的标题号来配置环境。</p>
 </blockquote>
-<h3 id="1-2-1、Linux用户（Ubuntu系列）"><a href="#1-2-1、Linux用户（Ubuntu系列）" class="headerlink" title="1.2.1、Linux用户（Ubuntu系列）"></a>1.2.1、Linux用户（Ubuntu系列）</h3><p><strong>Step1 配置SSH：<a href="#2.1.1、安装openssh-client">2.1.1</a>–&gt;<a href="#2.1.3、ssh常见操作命令">2.1.3</a></strong></p>
-<p><strong>Step2 配置虚拟环境：<a href="#3.3.1、创建虚拟环境">3.3.1</a>–&gt;<a href="#3.3.2、jupyter使用虚拟环境">3.3.2</a>或者<a href="#3.3.1、创建虚拟环境">3.3.1</a></strong></p>
-<p><strong>Step3 配置调用远程计算资源：<a href="#4.1.1、Pycharm(版本2019.3)实现">4.1.1</a>或<a href="#4.1.2、JupyterLab实现">4.1.2</a></strong></p>
-<h3 id="1-2-2、Windows用户"><a href="#1-2-2、Windows用户" class="headerlink" title="1.2.2、Windows用户"></a>1.2.2、Windows用户</h3><p><strong>Step1 配置SSH（安装Xshell）：<a href="#2.2、windows系统">2.2</a></strong></p>
-<p><strong>Step2 配置虚拟环境：<a href="#3.3.1、创建虚拟环境">3.3.1</a>–&gt;<a href="#3.3.2、jupyter使用虚拟环境">3.3.2</a>或者<a href="#3.3.1、创建虚拟环境">3.3.1</a></strong></p>
-<p><strong>Step3 配置调用远程计算资源：<a href="#4.1.1、Pycharm(版本2019.3)实现">4.1.1</a>或<a href="#4.2.2、JupyterLab实现">4.2.2</a></strong></p>
+<h3 id="1-2-1、Linux用户（Ubuntu系列）"><a href="#1-2-1、Linux用户（Ubuntu系列）" class="headerlink" title="1.2.1、Linux用户（Ubuntu系列）"></a>1.2.1、Linux用户（Ubuntu系列）</h3><p><strong>Step1 配置SSH：<a href="#user1">2.1.1</a>–&gt;<a href="#user2">2.1.4</a></strong></p>
+<p><strong>Step2 配置虚拟环境：<a href="#user3">3.3.1</a>–&gt;<a href="#user4">3.3.2</a>或者<a href="#user3">3.3.1</a></strong></p>
+<p><strong>Step3 配置调用远程计算资源：<a href="#user5">4.1.1</a>或<a href="#user6">4.1.2</a></strong></p>
+<h3 id="1-2-2、Windows用户"><a href="#1-2-2、Windows用户" class="headerlink" title="1.2.2、Windows用户"></a>1.2.2、Windows用户</h3><p><strong>Step1 配置SSH（安装Xshell）：<a href="#user9">2.2</a></strong></p>
+<p><strong>Step2 配置虚拟环境：<a href="#user3">3.3.1</a>–&gt;<a href="#user4">3.3.2</a>或者<a href="#user3">3.3.1</a></strong></p>
+<p><strong>Step3 配置调用远程计算资源：<a href="#user8">4.2.1</a>–&gt;<a href="#user5">4.1.1</a>或<a href="#user7">4.2.2</a></strong></p>
 <h2 id="1-3、管理员类"><a href="#1-3、管理员类" class="headerlink" title="1.3、管理员类"></a>1.3、管理员类</h2><p><strong>管理员类需熟悉文档的所有配置流程，掌控系统的功能要点，并及时更新文档说明，达到维护系统的管理员职责!</strong></p>
 <h1 id="二、配置本地和远程机器的SSH"><a href="#二、配置本地和远程机器的SSH" class="headerlink" title="二、配置本地和远程机器的SSH"></a>二、配置本地和远程机器的SSH</h1><blockquote>
-<p>ssh的含义、作用，就不赘述了，可参考这个博客。<a href="https://blog.csdn.net/netwalk/article/details/12951031" target="_blank" rel="noopener">博客链接</a>。这里解决本地机器和远程机器之间进行远程连接问题，包括linux和windows两系统解决方案。ssh含义</p>
+<p>ssh的含义、作用，就不赘述了，可参考这个博客。<a href="https://blog.csdn.net/netwalk/article/details/12951031" target="_blank" rel="noopener">博客链接</a>。这里解决本地机器和远程机器之间进行远程连接问题，包括linux和windows两系统解决方案。</p>
 </blockquote>
 <blockquote>
 <p>在阐述之前，先定义（虚构）本地机器（用户名：local）的ip地址为：192.168.112.1，远程机器（用户名：remote）的ip地址：192.168.112.2。本地机器的操作系统是Linux或者windows，远程机器的操作系统是Ubuntu16.04。</p>
@@ -291,7 +293,11 @@
 <blockquote>
 <p>废话说明：你可以发现这两个机器是在局域网里，两者之间是肯定能互通。如果两个机器之间无法连通起来，这有可能一个是内网，一个是外网，两者之间是不能互通，通常需要对内网进行端口映射，一般是买个云服务器做个端口转发。本文假设两者之间是能互通，若不通的话请自行百度解决。</p>
 </blockquote>
-<h2 id="2-1、-Linux系统（Ubuntu系列）"><a href="#2-1、-Linux系统（Ubuntu系列）" class="headerlink" title="2.1、 Linux系统（Ubuntu系列）"></a>2.1、 Linux系统（Ubuntu系列）</h2><h3 id="2-1-1、安装openssh-client"><a href="#2-1-1、安装openssh-client" class="headerlink" title="2.1.1、安装openssh-client"></a>2.1.1、安装openssh-client</h3><p>openssh-client是客户端，它的作用是只想登录别的机器的ssh，也就是本地机器用来登录远程机器。安装在local机器中，安装代码如下（打开终端）：</p>
+<blockquote>
+<p><strong>额外说明：出于安全问题，使用SSH连接远程机器，将禁用口令登录而使用密钥自动登录。</strong></p>
+</blockquote>
+<h2 id="2-1、-Linux系统（Ubuntu系列）"><a href="#2-1、-Linux系统（Ubuntu系列）" class="headerlink" title="2.1、 Linux系统（Ubuntu系列）"></a>2.1、 Linux系统（Ubuntu系列）</h2><p><span id="user1"></span></p>
+<h3 id="2-1-1、安装openssh-client"><a href="#2-1-1、安装openssh-client" class="headerlink" title="2.1.1、安装openssh-client"></a>2.1.1、安装openssh-client</h3><p>(user_1)openssh-client是客户端，它的作用是只想登录别的机器的ssh，也就是本地机器用来登录远程机器。安装在local机器中，安装代码如下（打开终端）：</p>
 <ul>
 <li>sudo apt-get install openssh-client  //安装客户端到local机器中</li>
 <li>ssh-keygen  //生成私钥和公钥，一直按回车默认即可</li>
@@ -314,6 +320,7 @@
 <li><p>exit  //断开连接</p>
 </li>
 </ul>
+<p><span id="user2"></span></p>
 <h3 id="2-1-4、ssh连接操作"><a href="#2-1-4、ssh连接操作" class="headerlink" title="2.1.4、ssh连接操作"></a>2.1.4、ssh连接操作</h3><blockquote>
 <p>实现自动登录，将本地机器的ssh公钥拷贝到远程机器的ssh中，下次连接只需添加按照下面的连接就可以，不需要添加密码。当然第一次添加是需要输入密码的，还需要管理员将修改远程机器ssh的配置文件，开放密码登录的权限。<strong>具体修改配置可参考<a href="https://www.linuxidc.com/Linux/2015-07/119608.htm" target="_blank" rel="noopener">博客</a>[管理员负责]</strong>。</p>
 </blockquote>
@@ -323,11 +330,35 @@
 <li><p>ssh <a href="mailto:remote@192.168.112.2" target="_blank" rel="noopener">remote@192.168.112.2</a> -p 22 -o ServerAliveInterval=60  //(日常连接)连接远程机器，’-p’是设置端口，‘-o’操作是设置防止无操作而断开连接。</p>
 </li>
 </ul>
-<h2 id="2-2、windows系统"><a href="#2-2、windows系统" class="headerlink" title="2.2、windows系统"></a>2.2、windows系统</h2><blockquote>
+<p><span id="user9"></span></p>
+<h2 id="2-2、windows系统"><a href="#2-2、windows系统" class="headerlink" title="2.2、windows系统"></a>2.2、windows系统</h2><h3 id="2-2-1、通过Xshell使用密钥连接Linux"><a href="#2-2-1、通过Xshell使用密钥连接Linux" class="headerlink" title="2.2.1、通过Xshell使用密钥连接Linux"></a>2.2.1、通过Xshell使用密钥连接Linux</h3><blockquote>
 <p>在windows里使用Xshell来连接远程Linux，<a href="http://wm.makeding.com/iclk/?zoneid=18724" target="_blank" rel="noopener">Xshell下载地址</a>。</p>
 </blockquote>
-<p>打开Xshell，新建服务器的连接客户端，配置远程主机的ip地址，然后点击用户身份验证，输入远程机器的用户名和密码。</p>
-<p><img src="guide/19.png" srcset="/img/loading.gif" alt></p>
+<p>1、打开Xshell，新建服务器的连接客户端，配置远程主机的ip地址和端口号。<br><img src="guide/19.png" srcset="/img/loading.gif" alt></p>
+<p>2、点击用户身份验证，输入远程机器的用户名和密码，然后点击连接！（如无法连接，请联系管理开放权限）<br><img src="guide/33.png" srcset="/img/loading.gif" alt></p>
+<p>3、<strong>生成SSH密钥。</strong> 为了实现密钥自动登录远程机器（抛弃用户名和密码登录操作），我们需要先生成用户密钥。默认下一步。<br><img src="guide/34.png" srcset="/img/loading.gif" alt><br><img src="guide/35.png" srcset="/img/loading.gif" alt><br><img src="guide/36.png" srcset="/img/loading.gif" alt></p>
+<p>4、需要设置一下密码，设置的简单点，后面配置会用到。<br><img src="guide/37.png" srcset="/img/loading.gif" alt></p>
+<p>5、保存一下密钥，后面需要把密钥上传到服务器中。点击完成、关闭。<br><img src="guide/38.png" srcset="/img/loading.gif" alt><br><img src="guide/39.png" srcset="/img/loading.gif" alt></p>
+<p>6、通过刚刚1、2步骤进入服务器，通过下面命令进入.ssh文件夹，再将刚刚生成的密钥文件上传到服务器，这里上传只需把文件拖拽到服务上即可完成。</p>
+<ul>
+<li><p>cd .ssh</p>
+</li>
+<li><p>ls<br><img src="guide/40.png" srcset="/img/loading.gif" alt></p>
+</li>
+</ul>
+<p>7、通过下面命令查看文件是否上传成功，然后将密钥添加到authorized_keys中，并查看是否添加成功。其中两处横线为xiaonan和Dell用户的密钥，竖线部分为新添加用户的密钥。</p>
+<ul>
+<li><p>cat  id_rsa_2048.pub &gt;&gt; authorized_keys //将公钥添加到服务器的公钥库中</p>
+</li>
+<li><p>cat authorized_keys</p>
+</li>
+</ul>
+<p><img src="guide/41.png" srcset="/img/loading.gif" alt></p>
+<p>8、重启ssh服务才能使上述配置成功！</p>
+<ul>
+<li>service ssh restart //重启服务，需要输入team用户密码<br><img src="guide/42.png" srcset="/img/loading.gif" alt></li>
+</ul>
+<p>9、执行2、步骤，选择Public Key选项进行密钥登录，选择生成的密钥，密码即是生成密钥时设置的密码。然后点击连接。<br><img src="guide/43.png" srcset="/img/loading.gif" alt></p>
 <h2 id="2-3、-参考文献"><a href="#2-3、-参考文献" class="headerlink" title="2.3、 参考文献"></a>2.3、 参考文献</h2><ul>
 <li><a href="https://blog.csdn.net/netwalk/article/details/12952051" target="_blank" rel="noopener">Ubuntu环境下SSH的安装及使用</a></li>
 </ul>
@@ -437,6 +468,7 @@ pyenv versions  //查看当前文件夹的版本
 <blockquote>
 <p>另外说明：没有考虑将Anaconda虚拟环境纳入管理，<strong>通过Anaconda创建虚拟环境的用户可跳过此步。</strong> 这里创建虚拟环境的工具是venv，其他工具未补充。</p>
 </blockquote>
+<p><span id="user3"></span></p>
 <h3 id="3-3-1、创建虚拟环境"><a href="#3-3-1、创建虚拟环境" class="headerlink" title="3.3.1、创建虚拟环境"></a>3.3.1、创建虚拟环境</h3><p><strong>下面在终端的操作指令：</strong></p>
 <ul>
 <li><p>pyenv versions        //查看pyenv管理下的python版本</p>
@@ -447,16 +479,15 @@ pyenv versions  //查看当前文件夹的版本
 </li>
 <li><p>python -m venv test //（pyenv管理的环境）创建虚拟环境，用户只需把“test”换成自己的虚拟环境的名称。</p>
 </li>
-<li><p>python\python3 -m venv test //（使用python3.5、2.7的环境）创建虚拟环境，用户只需把‘test’换成自己的虚拟环境名称</p>
+<li><p>python\python3 -m venv test //（使用python2.7、3.5的环境）创建虚拟环境，用户只需把‘test’换成自己的虚拟环境名称</p>
 </li>
 <li><p>source test/bin/activate  //激活虚拟环境，会发现终端出现虚拟环境的名字。当然，这里也可以重进终端进行激活。</p>
 </li>
 <li><p>python -V  //查看虚拟环境的python版本</p>
 </li>
-<li><p>deactivate  //退出虚拟环境</p>
+<li><p>deactivate  //退出虚拟环境<br><img src="guide/1.png" srcset="/img/loading.gif" alt></p>
 </li>
 </ul>
-<p><img src="guide/1.png" srcset="/img/loading.gif" alt></p>
 <p><strong>额外补充:打包依赖库和安装依赖库</strong></p>
 <ul>
 <li><p>pip freeze  &gt; deployment.txt  //将系统python库或者虚拟环境python（需激活）写入文本</p>
@@ -467,6 +498,7 @@ pyenv versions  //查看当前文件夹的版本
 </li>
 </ul>
 <p><strong>关于venv创建虚拟环境其他的功能，可参考官方Python文档。<a href="https://docs.python.org/zh-cn/3/tutorial/venv.html" target="_blank" rel="noopener">Python文档</a></strong></p>
+<p><span id="user4"></span></p>
 <h3 id="3-3-2、Jupyter使用虚拟环境"><a href="#3-3-2、Jupyter使用虚拟环境" class="headerlink" title="3.3.2、Jupyter使用虚拟环境"></a>3.3.2、Jupyter使用虚拟环境</h3><p><strong>在上述创建虚拟环境操作之后，重启一个终端，并输入如下命令：</strong></p>
 <ul>
 <li><p>source test/bin/activate  //激活虚拟环境，这里的虚拟环境只是用来说明，用户可以换成自己的虚拟环境。</p>
@@ -482,8 +514,7 @@ pyenv versions  //查看当前文件夹的版本
 <li><p>rm -r test  //(可选操作，删除操作)进入上面jupyter内核中删除指定的虚拟环境文件夹即可。</p>
 </li>
 </ul>
-<p><strong>关于JupyterLab的使用技巧，可以参考这篇文章。<a href="https://zhuanlan.zhihu.com/p/67959768" target="_blank" rel="noopener">JupyterLab使用技巧</a></strong></p>
-<p><img src="guide/2.png" srcset="/img/loading.gif" alt><br><img src="guide/3.png" srcset="/img/loading.gif" alt><br><img src="guide/4.png" srcset="/img/loading.gif" alt><br><img src="guide/5.png" srcset="/img/loading.gif" alt></p>
+<p><strong>关于JupyterLab的使用技巧，可以参考这篇文章。<a href="https://zhuanlan.zhihu.com/p/67959768" target="_blank" rel="noopener">JupyterLab使用技巧</a></strong><br><img src="guide/2.png" srcset="/img/loading.gif" alt><br><img src="guide/3.png" srcset="/img/loading.gif" alt><br><img src="guide/4.png" srcset="/img/loading.gif" alt><br><img src="guide/5.png" srcset="/img/loading.gif" alt></p>
 <h2 id="3-4、参考文献"><a href="#3-4、参考文献" class="headerlink" title="3.4、参考文献"></a>3.4、参考文献</h2><ul>
 <li><p><a href="https://www.cnblogs.com/kevingrace/p/10130801.html" target="_blank" rel="noopener">Python多版本管理器-pyenv 介绍及部署记录</a></p>
 </li>
@@ -496,24 +527,18 @@ pyenv versions  //查看当前文件夹的版本
 <li><p><a href="https://zhuanlan.zhihu.com/p/67959768" target="_blank" rel="noopener">JupyterLab使用技巧</a></p>
 </li>
 </ul>
-<h1 id="四、通过SSH本地调用远程计算资源（Pycharm，JupyterLab配置）"><a href="#四、通过SSH本地调用远程计算资源（Pycharm，JupyterLab配置）" class="headerlink" title="四、通过SSH本地调用远程计算资源（Pycharm，JupyterLab配置）"></a>四、通过SSH本地调用远程计算资源（Pycharm，JupyterLab配置）</h1><h2 id="4-1、Linux系统（Ubuntu系列）"><a href="#4-1、Linux系统（Ubuntu系列）" class="headerlink" title="4.1、Linux系统（Ubuntu系列）"></a>4.1、Linux系统（Ubuntu系列）</h2><h3 id="4-1-1、Pycharm-版本2019-3-实现"><a href="#4-1-1、Pycharm-版本2019-3-实现" class="headerlink" title="4.1.1、Pycharm(版本2019.3)实现"></a>4.1.1、Pycharm(版本2019.3)实现</h3><p><strong>Step1 将本地项目同步到远程服务中：</strong></p>
-<p>1、打开Pycharm，选择导航栏，依次选择：Tools–&gt;Deployment–&gt;Configuration</p>
-<p><img src="guide/6.png" srcset="/img/loading.gif" alt></p>
-<p>2、选择最上的+，再选择SFTP协议，输入名称，填写相关信息（如下图所示）</p>
-<p><img src="guide/7.png" srcset="/img/loading.gif" alt></p>
-<p>3、修改Mappings中的Deployment path：/</p>
-<p><img src="guide/8.png" srcset="/img/loading.gif" alt></p>
-<p>4、修改Excluded Paths中的Deployment path，将远程服务器中的部分文件排除在同步的文件中。点击OK完成</p>
-<p><img src="guide/9.png" srcset="/img/loading.gif" alt></p>
+<h1 id="四、通过SSH本地调用远程计算资源（Pycharm，JupyterLab配置）"><a href="#四、通过SSH本地调用远程计算资源（Pycharm，JupyterLab配置）" class="headerlink" title="四、通过SSH本地调用远程计算资源（Pycharm，JupyterLab配置）"></a>四、通过SSH本地调用远程计算资源（Pycharm，JupyterLab配置）</h1><h2 id="4-1、Linux系统（Ubuntu系列）"><a href="#4-1、Linux系统（Ubuntu系列）" class="headerlink" title="4.1、Linux系统（Ubuntu系列）"></a>4.1、Linux系统（Ubuntu系列）</h2><p><span id="user5"></span></p>
+<h3 id="4-1-1、Pycharm-版本2019-3-实现"><a href="#4-1-1、Pycharm-版本2019-3-实现" class="headerlink" title="4.1.1、Pycharm(版本2019.3)实现"></a>4.1.1、Pycharm(版本2019.3)实现</h3><p><strong>Step1 将本地项目同步到远程服务中：</strong></p>
+<p>1、打开Pycharm，选择导航栏，依次选择：Tools–&gt;Deployment–&gt;Configuration<br><img src="guide/6.png" srcset="/img/loading.gif" alt></p>
+<p>2、选择最上的+，再选择SFTP协议，输入名称，填写相关信息（如下图所示）<br><img src="guide/48.png" srcset="/img/loading.gif" alt></p>
+<p>3、修改Mappings中的Deployment path：/<br><img src="guide/8.png" srcset="/img/loading.gif" alt></p>
+<p>4、修改Excluded Paths中的Deployment path，将远程服务器中的部分文件排除在同步的文件中。点击OK完成。<br><img src="guide/9.png" srcset="/img/loading.gif" alt></p>
 <p><strong>Step2 配置远程服务器的Python解释器:</strong></p>
-<p>1、打开导航栏：Files–&gt;Settings–&gt;Project Interpreter</p>
-<p><img src="guide/10.png" srcset="/img/loading.gif" alt></p>
-<p>2、点击齿轮来添加解释器，选择SSH Interpreter，选择存在的server configuration，也就是刚刚配置的项目，点击Move进行下一步的配置。</p>
-<p><img src="guide/11.png" srcset="/img/loading.gif" alt></p>
-<p>3、修改默认的python解释器为上面设置的虚拟环境解释器。修改同步目录，将默认的远程值改成自己项目的根（/）下，最后点击Finish。</p>
-<p><img src="guide/13.png" srcset="/img/loading.gif" alt><br><img src="guide/12.png" srcset="/img/loading.gif" alt></p>
-<p>4、测试结果，在本地新建test.py，并输出‘Hello World’，按Ctrl+S会保存本地文件并同步到远程服务器的项目中。运行文件，会发现计算是在远程服务器完成的，没有占用本机的计算资源。</p>
-<p><img src="guide/14.png" srcset="/img/loading.gif" alt></p>
+<p>1、打开导航栏：Files–&gt;Settings–&gt;Project Interpreter<br><img src="guide/10.png" srcset="/img/loading.gif" alt></p>
+<p>2、点击齿轮来添加解释器，选择SSH Interpreter，选择存在的server configuration，也就是刚刚配置的项目，点击Move进行下一步的配置。<br><img src="guide/11.png" srcset="/img/loading.gif" alt></p>
+<p>3、修改默认的python解释器为上面设置的虚拟环境解释器。修改同步目录，将默认的远程值改成自己项目的根（/）下，最后点击Finish。<br><img src="guide/13.png" srcset="/img/loading.gif" alt><br><img src="guide/12.png" srcset="/img/loading.gif" alt></p>
+<p>4、测试结果，在本地新建test.py，并输出‘Hello World’，按Ctrl+S会保存本地文件并同步到远程服务器的项目中。运行文件，会发现计算是在远程服务器完成的，没有占用本机的计算资源。<br><img src="guide/14.png" srcset="/img/loading.gif" alt></p>
+<p><span id="user6"></span></p>
 <h3 id="4-1-2、JupyterLab实现"><a href="#4-1-2、JupyterLab实现" class="headerlink" title="4.1.2、JupyterLab实现"></a>4.1.2、JupyterLab实现</h3><blockquote>
 <p>JupyterLab使用远程计算资源，主要是通过ssh建立本地（local）机器和远程（remote）机器端口转发隧道，即两个机器之间建立端口对接，保持远程机器中的JupyterLab端口映射到本地机器，本地机器可以类似于在本地安装了JupyterLab并使用它。</p>
 </blockquote>
@@ -526,27 +551,28 @@ pyenv versions  //查看当前文件夹的版本
 </li>
 <li><p>cd xiaonan/    //进入自己的文件夹中</p>
 </li>
-<li><p>jupyter lab –no-browser  –port=1222  //端口可随意设置，若出现报错，有可能和其他端口冲突，改变可用端口即可。实验室使用规范：研一同学使用1000～1999范围内的端口，研二同学使用2000～2999，研三同学使用3000～3999。</p>
+<li><p>jupyter lab –no-browser  –port=1222  //端口可随意设置，若出现报错，有可能和其他端口冲突，改变可用端口即可。实验室使用规范：研一同学使用1000～1999范围内的端口，研二同学使用2000～2999，研三同学使用3000～3999。<br><img src="guide/15.png" srcset="/img/loading.gif" alt></p>
 </li>
 </ul>
-<p><img src="guide/15.png" srcset="/img/loading.gif" alt></p>
 <p>2、再重新打开一个终端，建立本地机器和远程机器的端口隧道。</p>
 <ul>
-<li>ssh <a href="mailto:remote@192.168.111.2" target="_blank" rel="noopener">remote@192.168.111.2</a> -p 22 -NL 1234:localhost:1222  //-p 22:这是ssh的端口，1234:localhost:1222，第一个1234是本地机器端口，可以随意设置。第二个1222即是上述建立的端口。</li>
+<li><p>ssh <a href="mailto:remote@192.168.111.2" target="_blank" rel="noopener">remote@192.168.111.2</a> -p 22 -NL 1234:localhost:1222  //-p 22:这是ssh的端口，1234:localhost:1222，第一个1234是本地机器端口，可以随意设置。第二个1222即是上述建立的端口。<br><img src="guide/16.png" srcset="/img/loading.gif" alt></p>
+</li>
+<li><p>打开本地浏览器，输入localhost:1234，输入登录密码（远程用户的密码）。<br><img src="guide/17.png" srcset="/img/loading.gif" alt><br><img src="guide/18.png" srcset="/img/loading.gif" alt></p>
+</li>
 </ul>
-<p><img src="guide/16.png" srcset="/img/loading.gif" alt></p>
-<ul>
-<li>打开本地浏览器，输入localhost:1234，输入登录密码（远程用户的密码）。</li>
-</ul>
-<p><img src="guide/17.png" srcset="/img/loading.gif" alt><br><img src="guide/18.png" srcset="/img/loading.gif" alt></p>
-<h2 id="4-2、Windows系统"><a href="#4-2、Windows系统" class="headerlink" title="4.2、Windows系统"></a>4.2、Windows系统</h2><h3 id="4-2-1、Pycharm-版本2019-3-实现"><a href="#4-2-1、Pycharm-版本2019-3-实现" class="headerlink" title="4.2.1、Pycharm(版本2019.3)实现"></a>4.2.1、Pycharm(版本2019.3)实现</h3><blockquote>
-<p>window的配置类似于Linux中的配置，可以查看上述Linux的配置流程。</p>
+<h2 id="4-2、Windows系统"><a href="#4-2、Windows系统" class="headerlink" title="4.2、Windows系统"></a>4.2、Windows系统</h2><p><span id="user8"></span></p>
+<h3 id="4-2-1、Pycharm-版本2019-3-实现"><a href="#4-2-1、Pycharm-版本2019-3-实现" class="headerlink" title="4.2.1、Pycharm(版本2019.3)实现"></a>4.2.1、Pycharm(版本2019.3)实现</h3><blockquote>
+<p>window的配置类似于Linux中的配置，可以查看上述Linux的配置流程。但是在2、步骤时windows是不同的。windows用户需要从Xshell中导出私钥，在Pycharm中选择私钥进行连接。</p>
 </blockquote>
+<p>1、打开Xshell中的用户密钥管理者，选择前面生成的密钥并导出，选择特定格式的私钥保存。<br><img src="guide/45.png" srcset="/img/loading.gif" alt></p>
+<p>2、输入密码，即生成密钥时设置的密码。<br><img src="guide/46.png" srcset="/img/loading.gif" alt></p>
+<p>3、在Pycharm中进行配置，选择‘Key pair’，选择刚刚导出的私钥，‘Passphrase’是生成密钥时设置的密码。其他操作流程如Linux所示。<br><img src="guide/47.png" srcset="/img/loading.gif" alt></p>
+<p><span id="user7"></span></p>
 <h3 id="4-2-2、JupyterLab实现"><a href="#4-2-2、JupyterLab实现" class="headerlink" title="4.2.2、JupyterLab实现"></a>4.2.2、JupyterLab实现</h3><blockquote>
 <p>Jupyter的实现原理在Linux实现中已阐述，可查看上述。下面具体讲述使用Xshell配置流程。</p>
 </blockquote>
-<p>1、打开Xshell，新建Jupyter的连接客户端，配置远程主机的ip地址，然后点击用户身份验证，输入远程机器的用户名和密码。</p>
-<p><img src="guide/20.png" srcset="/img/loading.gif" alt><br><img src="guide/21.png" srcset="/img/loading.gif" alt></p>
+<p>1、打开Xshell，新建Jupyter的连接客户端，配置远程主机的ip地址，然后点击用户身份验证，选择‘Public Key’进行连接。<br><img src="guide/20.png" srcset="/img/loading.gif" alt><br><img src="guide/21.png" srcset="/img/loading.gif" alt><br><img src="guide/43.png" srcset="/img/loading.gif" alt></p>
 <p>2、为了能方便登录进远程机器之后直接打开Jupyter Lab，这里设置了登录脚本，点击登录脚本。添加两个命令：</p>
 <ul>
 <li><p>cd  xiaonan/  //进入自己的文件目录</p>
@@ -554,10 +580,8 @@ pyenv versions  //查看当前文件夹的版本
 <li><p>jupyter lab –no-browser –port=2212 //端口号随意设置，但要记住后续需要用到，并不和系统中存在的端口号冲突</p>
 </li>
 </ul>
-<p>具体操作如图所示：</p>
-<p><img src="guide/22.png" srcset="/img/loading.gif" alt></p>
-<p>3、在远程机器打开了后台JupyterLab，我们需要在本地机器上建立和远程机器JupyterLab的端口隧道，来实现本地机器使用JupyterLab。具体操作：点击隧道，点击添加按钮，添加如图所示的信息。本地端口可以随意设置，只要不和本地机器的端口冲突即可，远程端口就是步骤2设置的JupyterLab端口，这里需要一致，否则不起作用。最后点击确定，然后连接，在浏览器输入localhost:1234。</p>
-<p><img src="guide/23.png" srcset="/img/loading.gif" alt></p>
+<p>具体操作如图所示：<br><img src="guide/22.png" srcset="/img/loading.gif" alt></p>
+<p>3、在远程机器打开了后台JupyterLab，我们需要在本地机器上建立和远程机器JupyterLab的端口隧道，来实现本地机器使用JupyterLab。具体操作：点击隧道，点击添加按钮，添加如图所示的信息。本地端口可以随意设置，只要不和本地机器的端口冲突即可，远程端口就是步骤2设置的JupyterLab端口，这里需要一致，否则不起作用。最后点击确定，然后连接，在浏览器输入localhost:1234。<br><img src="guide/23.png" srcset="/img/loading.gif" alt></p>
 <h1 id="5、常见系统问题"><a href="#5、常见系统问题" class="headerlink" title="5、常见系统问题"></a>5、常见系统问题</h1><h2 id="5-1、防止黑客攻击"><a href="#5-1、防止黑客攻击" class="headerlink" title="5.1、防止黑客攻击"></a>5.1、防止黑客攻击</h2><blockquote>
 <p>没想到第一次系统问题竟然是这种硬核的问题，服务器确实遭到了黑客的攻击。根据黑客留下来的文件推测，大概是使用我们服务器进行挖矿（比特币）。2020年2月6号凌晨5点服务器遭到入侵，这也是个苦难的一年（武汉肺炎肆虐），当时我的心真是很难受！我在艰难的防病毒，还得抽出时间来防服务器中毒！当时服务器内存倒是没有占满，而是把六块CPU拉满（总共12块），由于当时过于心急把病毒程序杀掉，没有想起来查看显存如何，大概两块基本都满了！起初用户密码是被修改的，我根本没有没办法通过ssh远程进来。不过，我还是留了一手，也不知道这位黑客是真不知道还是给我留情！我们服务器不是真正的服务器，我们习惯使用Ubuntu这种桌面化的linux系统。我在放假之前在服务器中预留TeamViewer（远程工具），这个工具使得我很快把机器夺回来，要是让他使劲的挖，非把我们的服务器挖坏不可！（而且那个时候因为疫情问题，大家都在家里，根本没有人在学校。）可有个问题，服务器只有一个用户team，现在密码被改了，我该如何进入？有可能你会想到root，可我从游客登录进去从终端没权限登录root，远程也没办法连得上，因为root里我没有安装ssh，我只把ssh安装在了team用户里。后来想起来，我可以通过TeamViewer这个远程界面打开虚拟终端（按Ctrl+F1~6），通过这个终端登录进root！这是个关键，这里也不知道是那个黑客没有考虑修改我的root密码，还是故意给我留一点生机，让我能够摸索到这里！进入root里那不就是拥有最高支配权，通过top找出病毒程序的pid，再通过kill利剑秒杀它，再通过passwd把我的小宝贝team改成我的名下！就这样，折腾到下午的1点半左右，终于把我们的机器夺回来了！我一开始发现是在早上九点多的时候，莫怪我那么晚才起，在家是真的爬不起来。但是，这也只是第一步，我让它的程序不运行了。可它仍躲在系统里，当时通过top是知道执行了什么程序，那是个定时程序，它会在某个时间段重启，所以下面是个漫长的排查之路！首先的思路还是先从那个运行程序入手，通过crontab -l查到小病毒躲在哪里了。当然，在这之前我大量的阅读cron的使用方法，发现也有好多用户类似于这种被攻击。我既然知道了你小东西在哪了，那我的思路就明确了！我把crontab卸载的很彻底，卸载的干干净净，首先不让你在我睡觉的时候重启，其次再把这小东西删的干干津津！这下系统里算干净了！下面考虑的就是防止黑客再次入侵进来，这就需要提升ssh安全级别，这次被攻击也是理所当然的事！像我起了个用户名team，然后密码是team123，然后服务器安然的放到公网里！你说，不攻击你攻击谁！哈哈！通过大量调研，提升安全等级有四个思路：</p>
 <blockquote>
@@ -584,15 +608,9 @@ pyenv versions  //查看当前文件夹的版本
 </blockquote>
 <p>1、通过top查看到了cron程序（定时器，运载小病毒）的执行，并拉满了6块cpu！（第一行）</p>
 <p><img src="guide/26.png" srcset="/img/loading.gif" alt></p>
-<p>2、通过cat /var/log/auth.log | grep ‘Accepted’ 命令查看Ubuntu登录者的信息（ip地址），发现一个可疑的ip地址:112.169.152.10，这是韩国首尔地方的ip地址，再结合日期：2月6日5点17，谁那么早就用服务器了！据我所知的人（实验室里的人），应该没有那么早的把！！哈哈！！这黑客删来删去，还是没有删干净！！不行呀！！</p>
-<p><img src="guide/27.png" srcset="/img/loading.gif" alt></p>
-<p>3、通过crontab -l查到了小病毒的藏身之所：/home/team/.bashtemp，从这里又觉得这小哥哥（黑客）挺厉害的，把文件弄成了隐藏文件，而且文件命名很有系统文件的味道！但你的狐狸尾巴还是很好揭示的！进一步查看他的代码，找到了删除系统日志文件和修改秘钥库的代码！！通过查看文件创建时间，是2月6号早上5:46，可以进一步验证这正是小病毒库！</p>
-<p><img src="guide/28.png" srcset="/img/loading.gif" alt></p>
-<p><img src="guide/29.png" srcset="/img/loading.gif" alt></p>
-<p><img src="guide/30.png" srcset="/img/loading.gif" alt></p>
-<p><img src="guide/31.png" srcset="/img/loading.gif" alt></p>
-<p>4、这是当时查看秘钥库时存在的秘钥，秘钥用户名：mdrfckr正是上面图片代码的秘钥！</p>
-<p><img src="guide/32.png" srcset="/img/loading.gif" alt></p>
+<p>2、通过cat /var/log/auth.log | grep ‘Accepted’ 命令查看Ubuntu登录者的信息（ip地址），发现一个可疑的ip地址:112.169.152.10，这是韩国首尔地方的ip地址，再结合日期：2月6日5点17，谁那么早就用服务器了！据我所知的人（实验室里的人），应该没有那么早的把！！哈哈！！这黑客删来删去，还是没有删干净！！不行呀！！<br><img src="guide/27.png" srcset="/img/loading.gif" alt></p>
+<p>3、通过crontab -l查到了小病毒的藏身之所：/home/team/.bashtemp，从这里又觉得这小哥哥（黑客）挺厉害的，把文件弄成了隐藏文件，而且文件命名很有系统文件的味道！但你的狐狸尾巴还是很好揭示的！进一步查看他的代码，找到了删除系统日志文件和修改秘钥库的代码！！通过查看文件创建时间，是2月6号早上5:46，可以进一步验证这正是小病毒库！<br><img src="guide/28.png" srcset="/img/loading.gif" alt><br><img src="guide/29.png" srcset="/img/loading.gif" alt><br><img src="guide/30.png" srcset="/img/loading.gif" alt><br><img src="guide/31.png" srcset="/img/loading.gif" alt></p>
+<p>4、这是当时查看秘钥库时存在的秘钥，秘钥用户名：mdrfckr正是上面图片代码的秘钥！<br><img src="guide/32.png" srcset="/img/loading.gif" alt></p>
 <h2 id="5-2、参考文献"><a href="#5-2、参考文献" class="headerlink" title="5.2、参考文献"></a>5.2、参考文献</h2><blockquote>
 <p>本来是一个技术指南，好像写成故事了！不过应该挺不错的把！下面的参考文献可以对于黑客入侵的检测有个认知，可以阅读一下！！</p>
 </blockquote>
@@ -613,7 +631,7 @@ pyenv versions  //查看当前文件夹的版本
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Machine-Learning/">Machine Learning</a>
+                      <a class="hover-with-bg" href="/tags/运维/">运维</a>
                     
                   </div>
                 
