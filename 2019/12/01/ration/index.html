@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content>
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content>
+  <title>在神经编码中的理性想法 - xiaonan</title>
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css">
+
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.18.1/styles/github-gist.min.css">
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_ijqayz9ro8k.css">
+
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- 自定义样式保持在最底部 -->
+
+
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>xiaonan</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              首页</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              分类</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/back1.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2019-12-01 16:29">
+                    星期日, 十二月 1日 2019, 4:29 下午
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    5.3k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    53
+                     分钟
+                  </span>
+                
+
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+<a id="more"></a>
+
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>复杂的行为通常由内部模型驱动，内部模型会随着时间整合感官信息，并促进长期规划以实现主观目标。 我们通过假设代理人行为合理来解释行为数据，也就是说，他们根据对任务及其相关因果的理解，采取可以优化其主观奖励的行动。我们采用了一种新的方法，即反向理性控制（IRC），以通过最大程度地测量其感官观察和动作的可能性来学习代理的内部模型和奖励功能。 因此，这从代理的行为中提取了代理的理性和可解释的思想。 根据这种行为的理性模型，我们还提供了一个解释神经数据的编码，重新编码和解码的框架。当该方法应用于对自然搜索任务进行次优优化的模拟主体的行为和神经数据时，该方法可成功恢复其内部模型和奖励功能，以及代表任务的神经流形内部的计算动力学。 这项工作为发现大脑如何用动态信念表示和计算奠定了基础。</p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>理解大脑如何工作需要解释神经活动。行为主义传统(1)的目的是将大脑理解为一个黑盒子，仅仅从它的输入和输出。现代神经科学已经能够通过观察黑匣子来获得重要的见解，但仍然在很大程度上将神经活动的测量与大脑的输入和输出联系起来。尽管这是感觉神经科学和运动神经科学的基础，但大多数神经活动支持无法解释的计算和认知功能-我们可以将这些功能称为“思想”。要理解大脑的计算，我们应该将神经活动与思想联系起来。 问题是，您如何衡量一个想法？</p>
+<p>在这里，我们建议通过将可解释的人工智能（AI）认知模型（用于自然任务）与对动物的感觉输入和行为输出的测量相结合，将思想建模为动态信念(我们赋予动物的)。我们通过动物世界的相关动态、观察、行动和目标来定义动物的任务。解决这些任务的人工智能模型会生成信念、动力和行动，这些信念、动力和行动反映了解决这些任务所需的基本计算，并生成像动物一样的行为。有了这些估计的想法，我们建议对大脑活动进行分析，以找到可能实现这些想法的神经表示和转换。</p>
+<p>我们的方法在保持认知模型的可解释性的同时，结合了复杂神经网络模型的灵活性。它超越了黑盒神经网络模型，它可以解决一项特定任务并找到与大脑的表征相似性（2-4）。 相反，我们解决了整个任务系列，然后找到最能描述动物行为任务的解决方案。然后，我们将这项最匹配的任务的属性与动物的心理模型关联起来，并称其为“理性”，因为在这种内部模型下，这样做是正确的。我们的方法基于潜在的潜在变量动力学来解释行为和神经活动，但是它对神经活动的常规潜在变量方法进行了改进，该方法仅压缩数据而无需考虑任务或计算（5,6）。相反，我们的潜在变量从任务本身和动物的信念中根据其内部模型继承意义。这为我们的行为和神经模型提供了可解释性。</p>
+<p>我们还想确保我们能在自然任务中解释底层生态行为的关键神经计算。 我们可以通过使用具有关键属性（确保我们的模型解决方案能够实现这些神经计算）的任务来完成此任务。首先，自然的任务应该包括潜在的或隐藏的变量：动物不直接对他们的感觉数据采取行动，因为这些数据只是对隐藏的现实世界的间接观察（7）。 其次，该任务应涉及不确定性，因为现实世界中的感知数据从根本上是模棱两可的，并且在根据其可靠性对证据进行权衡时行为会有所改善。第三，潜在变量与感官证据之间的关系在任务中应该是非线性的，因为如果线性计算就足够了，那么动物就不需要大脑了：它们只需将传感器连接到肌肉上，就可以一步计算出相同的结果。 第四，任务应该具有相关的时间动态，因为行动会影响未来，世界的有用特性也会改变。 动物必须对此负责。</p>
+<p>尽管动物每天执行的自然任务确实具有这些属性，但大多数神经科学研究为了简单起见将它们的子集分离出来。 尽管这揭示了神经计算的重要方面，但它也有可能错过了大脑计算的一些基本结构。 最近的进展保证了任务和模型的自然性和复杂性。</p>
+<p>随着复杂性和自然性的增加，对实际研究的一个主要挑战是从许多神经元记录足够的空间和时间精度，以揭示这些任务的相关计算动力学。具体来说，神经数据的维数必须大于目标任务的维数（8）。 现代神经技术现在为我们提供了这个机会：以细胞分辨率进行全脑钙成像以及细粒度的电生理记录可以同时从数千个神经元中进行高频记录。有限的实验时间和覆盖范围仍然阻碍了我们探索神经表征的能力。 但是，利用当前的大规模神经数据，我们将越来越有足够的能力来寻找自然主义和认知上有趣的任务中的神经表示和动力学。</p>
+<p>本文通过提供估计思想和解释神经活动的方法，在理解大脑如何产生复杂行为方面取得了进展。 我们首先描述一种基于模型的技术，我们称其为“逆向理性控制”，用于推断可能是理性思想基础的潜在动力学。 然后，我们提供了有关神经编码的理论框架，该框架展示了如何使用这些估算的理性思想来构建可解释的神经动力学描述。</p>
+<p>我们通过分析由人工大脑执行的任务来说明这些贡献，并展示了如何检验以下假设：神经网络具有与任务相关的变量的隐式表示，这些变量可用于解释神经计算。 我们选择与生态相关的觅食任务，该任务需要对过去的奖励，当前的观察和内部记忆状态保持敏感。 我们的方法应作为解释执行自然主义任务的真实行为者的行为和大脑活动的宝贵工具。</p>
+<h1 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h1><p>，<br><strong>将行为建模为理性的。</strong> 在一个不确定且部分可观察的环境中，动物学习基于有限的感官信息和主观价值来计划和采取行动。 为了更好地理解这些自然行为并解释其神经机制，估计解释动物行为策略的内部模型和奖励功能将是有益的。 在本文中，我们将动物建模为理性行为主体，它们以最佳方式发挥作用，以最大化其自身的主观回报，但这是在一个关于世界的可能不正确的假设下进行的。然后，我们将这个模型反转以推断出主体的内部假设和报酬，并估算内部信念的动态。 我们称此方法为反向理性控制（IRC），因为我们可以推断出解释主体控制其环境的次优行为的原因。</p>
+<p>该方法为主体的观察和行动轨迹创建概率模型，并选择模型参数（这个轨迹的最大似然）。 我们对代理人的内部模型进行假设，即认为它会获得关于根据已知随机动力学演化的世界的不可靠的感官观察。 最后，我们假设选择代理的行为是为了最大化其主观预期的长期效用。该效用既包括诸如食物奖励之类的收益，也包括诸如行动所消耗的能量之类的成本；它还应该考虑描述动机的内部状态，如饥饿或疲劳，这些主观状态调节主观效用。 然后，我们使用代理人的观察和动作序列来了解这个内部模型在世界（环境）范围内的参数。</p>
+<p>如果没有模型，则无法同时推断出奖励和潜在动力学，从而导致许多退化的解决方案。但是，在合理的模型约束下，我们证明了可以识别代理商的奖励功能和假定的动力学。 我们学习到的参数包括代理商假定的世界变量的随机动态，对那些世界状态的感官观察的可靠性以及对行为相关成本和状态相关奖励的主观权重。</p>
+<p><strong>部分可观察的马尔可夫决策过程。</strong></p>
+<p><strong>逆向理性控制。</strong>尽管具有最佳吸引力，但动物很少在实验确定的任务中表现出最佳，而不仅仅是表现出更多的随机性。 缺乏最优性，关于动物的行为我们可以有什么原则性的指导来帮助我们理解其大脑？ 一种可能性是动物是“理性的”，即与被测动物相比，最适合于不同的环境。在这一节中，我们提出了一种基于行为（主体在这个意义上是理性）的可能性的行为分析。其核心思想是通过任务来参数化一个主体可能的策略，在这些任务下，每个任务都是最优的，并找出这些任务中哪个最能解释行为数据。</p>
+<p>我们指定了一个POMDP系列，其中每个成员都有自己的任务动态，观察概率和主观奖励，共同构成参数矢量θ。 这些不同的任务将产生相应的最佳代理族，而不是单个最佳代理。 然后，根据实验观察到的数据并根据特工的潜在信念将其边缘化（图1B），我们以此家庭中的任务定义对数可能性：<br>$$L(\theta)=log\int db_{1:T} p(b_{1:T},o_{1:T},a_{1:T},s_{1:T}|\theta, \phi)$$<br>换句话说，我们发现了代理最佳解决任务的可能性。 在[3]φ中，实验设置中的已知参数决定了世界动态。 由于它们仅影响图形模型中的观测量，因此不会影响模型似然度θ（补充信息）。</p>
+<p>这种数学结构将可解释的模型直接连接到实验可观察的数据。 现在，我们可以形式化行为神经科学中的重要科学问题。 例如，如下所述，我们可以最大程度地在模型类中找到对动物行为的最佳解释性解释。 我们还可以比较归类为代理的不同奖励类型或关于任务的假设的不同模型类。</p>
+<p>对数似然[3]似乎很复杂，因为它取决于观察和行动的整个顺序，并且需要对潜在信念进行边缘化。 尽管如此，它仍可以使用POMDP的Markov属性进行计算：动作和观察可建立一个Markov链，其中代理的信念状态是一个隐藏变量。 我们证明了可以利用这种结构来有效地计算这种可能性（补充信息）。</p>
+<p><strong>行为合理化的挑战和解决方案。</strong>要解决IRC问题，我们需要对任务，信念和策略进行参数化，然后需要优化参数化对数可能性，以找到对数据的最佳解释。 这提出了我们需要解决的实际挑战。我们解释行为的核心思想是根据任务参数化一切。 最后，我们模型的所有其他元素都将回溯到这些任务。 因此，信念和过渡是潜在任务变量上的分布，策略表示为任务参数和偏好的函数，对数似然率是假设代理假设的任务参数的函数。</p>
+<p>因此，无论我们用于信念空间或策略的任何表示形式，我们都需要能够通过这些表示形式对任务参数传播优化。 这是IRC实际解决方案的要求。 第二个要求是我们可以实际计算最佳策略。</p>
+<p>由于概率空间远远大于它所度量的状态空间，因此很难有效地表示一般的信念和转换。信念状态是一种概率分布，因此即使是离散的世界状态也具有连续的值。对于连续变量，概率空间可能是无限维的。这对机器学习和大脑都是一个巨大的挑战，并且发现不确定性的神经似是而非的表现形式是一个活跃的研究课题(12－17)。我们考虑两个简单的方法来解决IRC使用有损压缩的信念:离散化，或分布近似。然后给出了离散情况下的具体应用实例。</p>
+<p>离散的信念和行动。如果我们有一个离散的状态空间，那么我们可以使用传统的马尔可夫决策策略。对于足够小的世界空间，我们可以完全离散化整个置信空间，然后使用标准MDP算法解决置信MDP问题(11,18)。特别地，可以通过Bellman方程递归地表示softmax策略\({\pi(a|b})\)下的状态作用值函数\({Q(b,a)}\)，我们可以使用值迭代（10,11）进行求解。 然后，结果值函数确定softmax策略\(\pi\)，从而确定对数似然[3]中与策略相关的项。</p>
+<p>最后，为了解决IRC问题，我们可以直接优化这个对数似然，例如通过贪心行搜索(补充信息)。高维问题的另一种选择是使用期望最大值找到具有梯度上升M步的局部最优值（补充信息，（19,20））。 为了计算对数似然的梯度，我们再次使用递归来精确计算值梯度\({\partial Q/\partial \theta}\)，并使用链式规则推导出策略梯度，然后推导出Q辅助函数梯度（补充信息）。</p>
+<p>持续的信念和行动。离散解的计算开销随着问题规模的增大而迅速增长，对于连续状态空间和连续控制变得非常棘手。一个实际的选择是通过一组有限的汇总统计信息来近似后验概率，然后通过期望传播等方法来更新后验概率(21)。 最简单的示例是使用平方统计，即高斯后验。 然后可以根据扩展的卡尔曼滤波器更新此置信状态，该扩展的卡尔曼滤波器考虑了主体的随机非线性动力学内部模型。对于更一般的置信表示，置信更新方程可能需要更多的灵活性。</p>
+<p>采取连续行动进行理性控制还需要我们实施一系列从信念到行动的连续政策π。我们使用深度神经网络通过一个参与者-批评者方法(深度确定性策略梯度，23)来实现这些策略(22)。通过这种方法，一个“批判者”网络可以估算“参与者”网络采取的每项行动的价值。</p>
+<p>深度学习方法通​​常用于强化学习中以提供灵活性，但它们缺乏可解释性：有关策略的信息分布在网络的权重和偏见中。 至关重要的是，为了保持可解释性，我们通过任务将这个族参数化。 具体来说，我们将模型参数作为策略网络的附加输入，并在任务参数\({p(\theta)}\)（22）的先前分布上同时学习最佳策略。这使得网络可以在任务族的POMDPs之间泛化其最优策略。它还允许我们简单地使用自动微分来计算策略梯度，这在优化对数可能性时会利用该差异来找到最适合代理行为的参数。</p>
+<p>最终，在针对离散或连续表示优化对数似然后，最终结果是一组参数θ，可以最好地解释观察到的行为数据，并定义代理的假定内部任务模型和主观偏好。在此模型类中，我们因此找到了对代理人行为的最佳理性解释。</p>
+<p><strong>为理性思维寻找神经代码。</strong>我们不认为任何真实的大脑都会明确地计算出Bellman方程的解，而是通过结合经验和思维模型来学习策略。 经过足够的训练，结果是一个代理人的行为“好像”在解决POMDP（图２Ａ）。</p>
+<p>如果像我们在“逆向理性控制”中假设的那样，将动物的行为很好地描述为取决于潜在的信念，那么就应该在大脑中找到这些信念的神经关联。 如果我们能找到这样的相关性，这是否意味着神经元编码或代表了这些信念？ 有人认为，神经密码的概念是一个较差的隐喻，因为它既不捕捉大脑的因果或机械结构，也不捕捉其与行动和能力的关系（24-26）。例如，可能是大脑没有利用神经信号，而神经学家可以利用这些信号来提取有关某项任务的信息。</p>
+<p>相反，这里我们认为编码、重新编码和解码的关联过程可以在算法或表征层面上解释大脑中与任务相关的计算(27)。大脑的编码指定了如何使用神经活动来估计任务变量(图2B)，既包括奖励变量，也包括不相关或讨厌的变量，这些变量必须与它们分开。重新编码描述了如何通过神经处理在时间和空间上转换编码(图2C)。解码描述了这些评估如何预测未来的行动(图2D)。</p>
+<p>（在我们使用这些术语时，我们是从大脑的角度出发的。“解码”一词更多地反映了科学家的观点，即科学家解码大脑活动以估计编码质量。相反，我们用“解码”这个术语来描述神经活动是如何影响行为的:我们说大脑解码自己的活动来产生行为。）</p>
+<p>这种层次的解释不需要捕捉神经反应的每一个方面，也不需要捕捉它们进化的机制。显然，它不能解释对未经测试的任务变量的响应。尽管如此，如果我们能在一个任务相关的子流形(28)中解释刺激和动作依赖的神经动力学，这将是一个巨大的进步，它解释了信息是如何相互作用和预测行为的。尽管这种“假设”描述不能合法地声称是因果关系，但由于它确实为因果关系测试提供了有用的预测，说明哪些神经特征会影响计算和行为，因此可以提升为因果关系（29，30）</p>
+<p>接下来，我们描述这种表示层解释的一般结构。 然后，我们采用这种方法来分析人工大脑执行特定的觅食任务。</p>
+<p>为了开始分析，我们建议使用逆理性控制从我们观察到的行为者做出的感觉输入和动作中构建行为模型。 推断的内部模型使我们能够估算出主体关于部分观察到的世界状态ｓ的时间依赖性信念b。</p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Neuroscience/">Neuroscience</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/12/07/nlp/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">词向量</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/10/18/tricks/">
+                        <span class="hidden-mobile">使用卷积神经网络图像分类的技巧包</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "在神经编码中的理性想法&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

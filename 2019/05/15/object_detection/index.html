@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content>
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content>
+  <title>目标检测方法总结 - xiaonan</title>
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css">
+
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.18.1/styles/github-gist.min.css">
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_ijqayz9ro8k.css">
+
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- 自定义样式保持在最底部 -->
+
+
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>xiaonan</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              首页</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              分类</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/back1.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2019-05-15 18:51">
+                    星期三, 五月 15日 2019, 6:51 晚上
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    3.5k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    36
+                     分钟
+                  </span>
+                
+
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <blockquote>
+<p>这是一篇介绍各个目标检测方法的文章，包含：CNN，R-CNN，Fast R-CNN，Faster R-CNN等目标检测算法。<a href="https://www.analyticsvidhya.com/blog/2018/10/a-step-by-step-introduction-to-the-basic-object-detection-algorithms-part-1/" target="_blank" rel="noopener">文章原文</a></p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="解决一个目标检测任务的一个简单方式（使用深度学习）"><a href="#解决一个目标检测任务的一个简单方式（使用深度学习）" class="headerlink" title="解决一个目标检测任务的一个简单方式（使用深度学习）"></a>解决一个目标检测任务的一个简单方式（使用深度学习）</h2><p>接下来是一个受欢迎的示例阐述一个目标检测算法是如何工作的。在图片中的，从一个人到一个降落伞，已经用一个特定等级的精确值来识别和定位。<br><img src="/assets/object_detection/16.png" srcset="/img/loading.gif" alt="图片"><br>让我们开始最简单的深度学习方法，并且也是使用的最广泛的一个，在图像卷积神经网络或者CNNs中检测目标。<br>我将为你简洁地总结一个CNN内部工作，看看下面图片：<br><img src="/assets/object_detection/17.png" srcset="/img/loading.gif" alt="图片"><br>我传递一个图片给那个网络，然后送到不同的卷积和池化层。最终，我们得到目标的类形式的输出。相当直白，不是嘛？<br>对于每个输入图片，我们得到一个相应的类作为输出。我们可以使用这个技术去检测一个图片中不同目标嘛？是的，我们可以！我们来看看使用一个CNN我们可以怎样解决一个通常的目标检测问题。<br>1.首先，我使用一个图像作为输入<br><img src="/assets/object_detection/18.png" srcset="/img/loading.gif" alt="图片"><br>2.然后，我们划分图像成不同的区域<br><img src="/assets/object_detection/19.png" srcset="/img/loading.gif" alt="图片"><br>3.我们考虑每个区域为单独的图像<br>4.传递所有这些区域（图片）到CNN中并且将它们分成不同的类别<br>5.一旦我们已经划分每个区域为相应的类别，我们可以组合所有这些区域来获取检测到的目标的原始图片<br><img src="/assets/object_detection/20.png" srcset="/img/loading.gif" alt="图片"></p>
+<p>使用这个方法的问题是在图像中的目标可能有不同的纵横比和空间位置。例如，在某些情况下，目标可能覆盖大多数图像，而在其他情况下，目标可能只覆盖图像的一小部分。目标的形状可能也不同（在现实使用案例中发生很多事情）</p>
+<p>由于这些因素，我们需要大量的区域导致了大量的计算时间。所以，为了解决这个并且减少区域的数量，我们可以使用基于区域的CNN，它使用提议方法去选择区域。让我们了解这个基于区域的CNN可以为我们做些什么！</p>
+<h2 id="理解R-CNN（基于区域的卷积神经网络）"><a href="#理解R-CNN（基于区域的卷积神经网络）" class="headerlink" title="理解R-CNN（基于区域的卷积神经网络）"></a>理解R-CNN（基于区域的卷积神经网络）</h2><h3 id="R-CNN的总结"><a href="#R-CNN的总结" class="headerlink" title="R-CNN的总结"></a>R-CNN的总结</h3><p>R-CNN算法在图片中提取出一群框代替了大量区域，并且检查这些框是否包含一些目标。R-CNN使用选择性搜索算法（selective search）去从一个图片中提取出这些框（这些框叫做区域）。</p>
+<p>让我们首先理解什么是选择性搜索和它是怎么样识别不同的区域，四个目标：尺度，颜色，纹理和附件（enclosure），选择性搜索识别这些在图片中的模式，并且基于此提议不同的区域。下面是选择搜索工作的简要概述：</p>
+<ul>
+<li>首先它选择一张图片作为输入;<br><img src="/assets/object_detection/1.png" srcset="/img/loading.gif" alt="图片"></li>
+<li>然后，它生成初始的子分割以至于我们从这个图片中有多个区域<br><img src="/assets/object_detection/2.png" srcset="/img/loading.gif" alt="图片"></li>
+<li>这个技术然后组合相似的区域去形成一个更大的区域（基于颜色类似，纹理类似，大小类似和形状兼容性）<br><img src="/assets/object_detection/3.png" srcset="/img/loading.gif" alt="图片"></li>
+<li>最后，这些区域然后产生最终的目标位置（感兴趣的区域，也就是任务所要检测的目标）</li>
+</ul>
+<p>下面是R-CNN检测目标所遵循步骤的简洁摘要：</p>
+<ul>
+<li><p>首先，我们采用预训练的卷积神经网络（或者自己预训练的卷积神经网络）</p>
+</li>
+<li><p>然后，这个模型是被重新训练的，我们根据需要检测类别的数量来训练网络的最后一层。</p>
+</li>
+<li><p>第三步，对于每一个图像得到感兴趣的区域，然后我们重塑所有这些区域以至于他们能够匹配CNN的输入大小</p>
+</li>
+<li><p>在获得区域后，我们训练SVM（支持向量机）去分类目标和背景。对于每一个类别，我们训练一个二进制SVM模型</p>
+</li>
+<li><p>最后我们训练一个线性回归模型去为图片中每个被识别的图片生成严格的边界框</p>
+</li>
+</ul>
+<p>你可以通过可视化示例更好的了解上述步骤，所以让我们应用一个：</p>
+<ul>
+<li>首先，一个图像被作为输入<br><img src="/assets/object_detection/4.png" srcset="/img/loading.gif" alt="图片"></li>
+<li>然后，我们使用一个提议方法（例如上面说的选择性搜索算法（selective search））去获得感兴趣的区域（Region of Interest，RoI）<br><img src="/assets/object_detection/5.png" srcset="/img/loading.gif" alt="图片"></li>
+<li>然后根据CNN的输入形状要求重塑所有这些区域的形状，并且每个区域（region）是被传递到卷积网络中（ConvNet）<br><img src="/assets/object_detection/6.png" srcset="/img/loading.gif" alt="图片"></li>
+<li>然后，CNN提取每个区域的特征，并且使用SVM（支持向量机）去划分这些区域为不同的类别<br><img src="/assets/object_detection/7.png" srcset="/img/loading.gif" alt="图片"></li>
+<li>最后，使用边界框回归器去预测每个被识别区域的边界框<br><img src="/assets/object_detection/8.png" srcset="/img/loading.gif" alt="图片"><br>简而言之，这就是R-CNN如何帮助我们检测目标。</li>
+</ul>
+<h3 id="R-CNN中存在的问题"><a href="#R-CNN中存在的问题" class="headerlink" title="R-CNN中存在的问题"></a>R-CNN中存在的问题</h3><p>So far（到目前为止），我们已经了解R-CNN在目标检测上是如何有益的，但是这个技术自身也有很大的局限性。下面的步骤导致训练一个R-CNN模型带来的巨大代价并且也是很慢的：</p>
+<ul>
+<li><p>基于选择性搜索算法提取2000个区域</p>
+</li>
+<li><p>为每个图像区域使用CNN提取特征，假设我们有N个图像，那CNN特征数量将有N×2000</p>
+</li>
+<li><p>使用R-CNN进行目标检测的整个过程有三个模型：</p>
+<ol>
+<li><p>用于特征提取的CNN模型</p>
+</li>
+<li><p>用于识别目标的线性SVM（支持向量机）分类器</p>
+</li>
+<li><p>用于接近真实边界框的回归模型</p>
+</li>
+</ol>
+</li>
+</ul>
+<p>所有这些过程结合起来使R-CNN变得很慢，对于每个新的图像进行预测需要大约40-50秒，这本质上使得这个模型显得很笨重并且实际上当面对一个庞大的数据集时，也是不可能去构建的。</p>
+<p>这儿，有个好消息！我们有另一个目标检测技术，它解决我们在R-CNN中看到的限制。</p>
+<h2 id="理解Fast-R-CNN"><a href="#理解Fast-R-CNN" class="headerlink" title="理解Fast R-CNN"></a>理解Fast R-CNN</h2><h3 id="Fast-R-CNN概述"><a href="#Fast-R-CNN概述" class="headerlink" title="Fast R-CNN概述"></a>Fast R-CNN概述</h3><p>通常我们需要采取那些方法去减少R-CNN的计算时间，来代替每张图片运行CNN2000次，使得我们每个图像只运行一次就能够得到所有感兴趣区域（这些区域包含一些目标）</p>
+<p>Ross Girshick，R-CNN作者提出了每张图片仅仅运行CNN一次的观点并且然后找到一个在2000个区域中共享计算的方法。在Fast R-CNN中，我们输送输入图片给CNN，它依次产生卷积特征映射。使用这些映射提取建议区域。然后，我们使用一个RoI池层（RoI pooling layer）去重塑所有被提议区域的形状为一个固定的大小，以至于它能够输送到全连接网络。</p>
+<p>让我们分解成步骤去简化概念：</p>
+<p>1.和前两种技术一样，我们采用一个图片作为输入;</p>
+<p>2.这个图片是被传递到一个ConvNet中依次产生感兴趣区域;</p>
+<p>3.通过应用一个RoI池层来重塑所有这些区域的形状并且作为每个ConvNet的输入，然后，每个区域被传递到全连接网络;</p>
+<p>4.在全连接层网络的首个层是使用一个softmax层来输出类别，和softmax层一起，一个线性回归器也平行使用，来输出预测类的边界框坐标;</p>
+<p>所以，并不是像在R-CNN中使用三个不同的模型，Fast R-CNN使用一个单独的模型去从区域中提取特征，划分他们成不同的类并且同时为被识别的类返回边界框。</p>
+<p>为了进一步细分，我将可视化每个步骤，为解释添加实用角度。</p>
+<ul>
+<li>我们遵循现在众所周知的步骤把一个图片作为输入：<br><img src="/assets/object_detection/9.png" srcset="/img/loading.gif" alt="图片"></li>
+<li>这个图像是被传递到一个ConvNet，并且返回相应的感兴趣区域<br><img src="/assets/object_detection/10.png" srcset="/img/loading.gif" alt="图片"></li>
+<li>然后我们在提取的感兴趣区域应用RoI池层（RoI pooling layer）去确保所有的区域是相同的形状大小<br><img src="/assets/object_detection/11.png" srcset="/img/loading.gif" alt="图片"></li>
+<li>最后，这些区域被传递到一个全连接层网络，对他们进行分类，并且同时使用softmax和线性回归层返回边界框<br><img src="/assets/object_detection/12.png" srcset="/img/loading.gif" alt="图片"><br>这就是Fast R-CNN如何解决R-CNN中的两个主要问题，即（1）每张图片传递一个而不是2000个区域给ConvNet（卷积网络），（2）并且使用一个而不是三个不同的模型去提取特征、分类和生成边界框</li>
+</ul>
+<h3 id="Fast-R-CNN存在的问题"><a href="#Fast-R-CNN存在的问题" class="headerlink" title="Fast R-CNN存在的问题"></a>Fast R-CNN存在的问题</h3><p>但是，即使是Fast R-CNN也存在一定的问题，它也使用选择性搜索算法作为提议方法去发现感兴趣区域，这是慢的并且浪费处理时间。每张图片使用大约2秒去检测目标，和R-CNN相比更好点。但是当我们考虑到大型现实的数据集时，然而即使一个Fast R-CNN也看起来不是如此的快。<br>但是，仍然有另外的目标检测算法胜过Fast R-CNN，对于它的名字你不必感到惊讶。</p>
+<h2 id="理解Faster-R-CNN"><a href="#理解Faster-R-CNN" class="headerlink" title="理解Faster R-CNN"></a>理解Faster R-CNN</h2><h3 id="Faster-R-CNN的概述"><a href="#Faster-R-CNN的概述" class="headerlink" title="Faster R-CNN的概述"></a>Faster R-CNN的概述</h3><p>Faster R-CNN是Fast R-CNN修改的版本，在它们之间主要的不同性是Fast R-CNN使用选择性搜索去产生感兴趣区域，而Faster R-CNN使用区域建议网络（RPN，Regions Proposal Network）算法去产生感兴趣区域。RPN采用图像特征映射作为一个输入并且产生一组目标建议，每一个目标建议都以目标分数作为输出。</p>
+<p>下面是Faster R-CNN方法通常遵循的步骤：</p>
+<ul>
+<li><p>首先，我们采用一个图像作为输入并且传递它到ConvNet，然后对于这个图片产生特征映射。</p>
+</li>
+<li><p>这些特征映射使用区域建议网络（RPN）产生带有目标分数的目标建议</p>
+</li>
+<li><p>这些建议使用RoI池层（RoI pooling layer）来降低所有的建议到相同的大小</p>
+</li>
+<li><p>最后，那些提议是被传递到一个全连接层，在这个全连接层的顶部有一个softmax层和一个线性回归层来分类和输出目标的边界框</p>
+</li>
+</ul>
+<p><img src="/assets/object_detection/13.png" srcset="/img/loading.gif" alt="图片"></p>
+<p>让我们简要解释一下这个区域建议网络是如何确切的工作的。</p>
+<p>首先，Faster R-CNN从CNN中获得特征映射并且传递他们到RPN中。RPN在这些特征映射上使用一个滑动窗口，并且在每个窗口上，它产生k个不同形状和大小的锚框（Anchor boxes）<br><img src="/assets/object_detection/14.png" srcset="/img/loading.gif" alt="图片"></p>
+<p>锚框是固定尺度的边界框，其是被放置在整个图像中，并且有不同的形状和大小。对于每个锚框，RPN预测两件事：</p>
+<ul>
+<li><p>首先是一个锚是一个目标的概率（它没有考虑那个目标属于那个类）</p>
+</li>
+<li><p>其次用于调整锚去更好地适应目标的边界框回归器<br>我们现在有不同形状和大小的边界框，他们被传递到RoI池层。现在，在RPN步骤之后，可能会有没有被分配类的建议（提议），我们可以采用每个建议并对其进行裁剪，以至于每个建议包含一个目标。这也就是RoI池层做的事，它为每个锚提取固定尺寸的特征映射：<br><img src="/assets/object_detection/15.png" srcset="/img/loading.gif" alt="图片"><br>然后这些特征映射是被传递到一个全连接层，这个层包含一个softmax层和一个线性回归层。最终，分类目标并且预测被识别目标的边界框。</p>
+</li>
+</ul>
+<h3 id="Faster-R-CNN中存在的问题"><a href="#Faster-R-CNN中存在的问题" class="headerlink" title="Faster R-CNN中存在的问题"></a>Faster R-CNN中存在的问题</h3><p>到目前为至，我们讨论的所有目标检测算法都使用区域去识别目标。这个网络不会不会一次查看完整的图片，而是依次关注图像中某个部分，这也就是创造了两个复杂性：</p>
+<ul>
+<li><p>该算法需要多次通过单个图像去提取所有目标</p>
+</li>
+<li><p>由于不同的系统一个接一个地工作，系统的性能进一步地取决于先前系统是如何执行的</p>
+</li>
+</ul>
+<h2 id="以上算法的总结"><a href="#以上算法的总结" class="headerlink" title="以上算法的总结"></a>以上算法的总结</h2><p>对于我们在这篇文章中讨论的算法，下面的表格是一个很好的总结。我建议下次你正在进行目标检测挑战时保持这个方便！</p>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th align="left">特点</th>
+<th align="left">预测时间/图片</th>
+<th align="left">局限性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CNN</td>
+<td align="left">划分图片成多个区域并且然后分类每个区域成不同类别</td>
+<td align="left">-</td>
+<td align="left">需要很多区域去预测精确度并且因此很高的计算时间</td>
+</tr>
+<tr>
+<td>RCNN</td>
+<td align="left">选择selectvie search去产生区域，从每个图片提取大约2000区域</td>
+<td align="left">40-50秒</td>
+<td align="left">每个区域分别传递给CNN的计算时间长 它还使用了三种不同模型进行预测</td>
+</tr>
+<tr>
+<td>Fast RCNN</td>
+<td align="left">每个图片传递给CNN仅仅一次并且提取出特征映射 这些特征使用selective search去产生预测  把RCNN中使用的所有三个模型组合在一起</td>
+<td align="left">2秒</td>
+<td align="left">selective search 是慢的并且因此计算时间仍然很高</td>
+</tr>
+<tr>
+<td>Faster RCNN</td>
+<td align="left">使用RPN（Region Proposal Network）替代Selective Search方法使得算法更快</td>
+<td align="left">0.2秒</td>
+<td align="left">目标提议需要时间，并且由于不同的系统一个接一个地工作，系统的性能取决于先前系统的执行方式</td>
+</tr>
+</tbody></table>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Deep-Learning/">Deep Learning</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/06/17/tf_session/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">session(会话)——TensorFlow的运行模型</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/04/01/learning_means/">
+                        <span class="hidden-mobile">总结机器学习相关知识与方法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "目标检测方法总结&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content>
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content>
+  <title>linux常见命令汇总 - xiaonan</title>
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css">
+
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.18.1/styles/github-gist.min.css">
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_ijqayz9ro8k.css">
+
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- 自定义样式保持在最底部 -->
+
+
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>xiaonan</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              首页</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              分类</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/back1.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2018-07-22 22:29">
+                    星期日, 七月 22日 2018, 10:29 晚上
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    1.4k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    17
+                     分钟
+                  </span>
+                
+
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <blockquote>
+<p>汇总在使用ubuntu时常用到的linux命令</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="1-tar、zip打包解压常见命令"><a href="#1-tar、zip打包解压常见命令" class="headerlink" title="1.tar、zip打包解压常见命令"></a>1.tar、zip打包解压常见命令</h1><p>-c: 建立压缩档案<br>-x：解压<br>-t：查看内容<br>-r：向压缩归档文件末尾追加文件<br>-u：更新原压缩包中的文件</p>
+<p>这五个是独立的命令，压缩解压都要用到其中一个，可以和别的命令连用但只能用其中一个。下面的参数是根据需要在压缩或解压档案时可选的。</p>
+<p>-z：有gzip属性的<br>-j：有bz2属性的<br>-Z：有compress属性的<br>-v：显示所有过程<br>-O：将文件解开到标准输出</p>
+<p>下面的参数-f是必须的</p>
+<p>-f: 使用档案名字，切记，这个参数是最后一个参数，后面只能接档案名。</p>
+<p> tar -cf all.tar *.jpg<br>这条命令是将所有.jpg的文件打成一个名为all.tar的包。-c是表示产生新的包，-f指定包的文件名。</p>
+<p> tar -rf all.tar *.gif<br>这条命令是将所有.gif的文件增加到all.tar的包里面去。-r是表示增加文件的意思。</p>
+<p> tar -uf all.tar logo.gif<br>这条命令是更新原来tar包all.tar中logo.gif文件，-u是表示更新文件的意思。</p>
+<p> tar -tf all.tar<br>这条命令是列出all.tar包中所有文件，-t是列出文件的意思</p>
+<p> tar -xf all.tar<br>这条命令是解出all.tar包中所有文件，-t是解开的意思</p>
+<h2 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h2><p>tar -cvf jpg.tar *.jpg //将目录里所有jpg文件打包成tar.jpg </p>
+<p>tar -czf jpg.tar.gz *.jpg   //将目录里所有jpg文件打包成jpg.tar后，并且将其用gzip压缩，生成一个gzip压缩过的包，命名为jpg.tar.gz</p>
+<p> tar -cjf jpg.tar.bz2 *.jpg //将目录里所有jpg文件打包成jpg.tar后，并且将其用bzip2压缩，生成一个bzip2压缩过的包，命名为jpg.tar.bz2</p>
+<p>tar -cZf jpg.tar.Z *.jpg   //将目录里所有jpg文件打包成jpg.tar后，并且将其用compress压缩，生成一个umcompress压缩过的包，命名为jpg.tar.Z</p>
+<p>rar a jpg.rar *.jpg //rar格式的压缩，需要先下载rar for linux</p>
+<p>zip jpg.zip *.jpg //zip格式的压缩，需要先下载zip for linux</p>
+<h2 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h2><p>tar -xvf file.tar //解压 tar包</p>
+<p>tar -xzvf file.tar.gz //解压tar.gz</p>
+<p>tar -xjvf file.tar.bz2   //解压 tar.bz2</p>
+<p>tar -xZvf file.tar.Z   //解压tar.Z</p>
+<p>unrar e file.rar //解压rar</p>
+<p>unzip file.zip //解压zip</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>1、*.tar 用 tar -xvf 解压</p>
+<p>2、*.gz 用 gzip -d或者gunzip 解压</p>
+<p>3、<em>.tar.gz和</em>.tgz 用 tar -xzf 解压</p>
+<p>4、*.bz2 用 bzip2 -d或者用bunzip2 解压</p>
+<p>5、*.tar.bz2用tar -xjf 解压</p>
+<p>6、*.Z 用 uncompress 解压</p>
+<p>7、*.tar.Z 用tar -xZf 解压</p>
+<p>8、*.rar 用 unrar e解压</p>
+<p>9、*.zip 用 unzip 解压</p>
+<p><em>tar解压jdk到指定文件夹：</em></p>
+<pre><code class="hljs undefined">tar -xzvf jdk-8u131-linux-x64.tar.gz -C /usr/local/java</code></pre>
+
+<p><em>zip解压文件到指定文件夹：</em></p>
+<pre><code class="hljs undefined">unzip 文件.zip -d /文件夹</code></pre>
+
+<h2 id="2-无法访问windows系统磁盘"><a href="#2-无法访问windows系统磁盘" class="headerlink" title="2.无法访问windows系统磁盘"></a>2.无法访问windows系统磁盘</h2><blockquote>
+<p>causes:(首先我的电脑是双系统，这也只有双系统的情况才会发生。)<br>应该上一次使用win系统使电脑睡眠，没有完全关机,（应该是非正常关机，要解决的话可以再进一次win系统，正常关机。）这次开机进入ubuntu就出现这种情况。</p>
+</blockquote>
+<p><strong>解决方法：</strong><br><em>a.在终端输入如下命令，查看分区挂载情况</em></p>
+<pre><code class="hljs undefined">sudo fdisk -l</code></pre>
+
+<p>如图所示：<br><img src="/assets/linux/disk1.png" srcset="/img/loading.gif" alt="分区挂载情况"><br><em>b.修复挂载错误的相应的分区,如提示中的/dev/sda5，输入：</em></p>
+<pre><code class="hljs undefined">sudo ntfsfix /dev/sda5</code></pre>
+
+<p>这样就修复成功:smiley::smiley:：<br><img src="/assets/linux/disk2.png" srcset="/img/loading.gif" alt="修复成功"></p>
+<h2 id="3-复制文件-夹-和移动文件-夹）"><a href="#3-复制文件-夹-和移动文件-夹）" class="headerlink" title="3.复制文件(夹)和移动文件(夹）"></a>3.复制文件(夹)和移动文件(夹）</h2><blockquote>
+<p>复制、移动、删除的操作命令：cp、mv、rm</p>
+</blockquote>
+<p>一、文件复制命令操作（cp）</p>
+<pre><code class="hljs undefined">命令格式：cp [-adfilprsu] 源文件(source) 目标文件(destination)
+cp [option] source1 source2 source3 ... directory</code></pre>
+
+<p>参数说明：<br>-a:是指archive的意思，也说是指复制所有的目录<br>-d:若源文件为连接文件(link file)，则复制连接文件属性而非文件本身<br>-f:强制(force)，若有重复或其它疑问时，不会询问用户，而强制复制<br>-i:若目标文件(destination)已存在，在覆盖时会先询问是否真的操作<br>-l:建立硬连接(hard link)的连接文件，而非复制文件本身<br>-p:与文件的属性一起复制，而非使用默认属性<br>-r:递归复制，用于目录的复制操作<br>-s:复制成符号连接文件(symbolic link)，即“快捷方式”文件<br>-u:若目标文件比源文件旧，更新目标文件 </p>
+<p>如将/test1目录下的file1复制到/test3目录，并将文件名改为file2,可输入以下命令：</p>
+<pre><code class="hljs undefined">cp /test1/file1 /test3/file2</code></pre>
+
+<p>二、文件移动命令操作（mv）</p>
+<pre><code class="hljs undefined">命令格式：mv [-fiv] source destination</code></pre>
+
+<p>参数说明：<br>-f:force，强制直接移动而不询问<br>-i:若目标文件(destination)已经存在，就会询问是否覆盖<br>-u:若目标文件已经存在，且源文件比较新，才会更新</p>
+<p>如将/test1目录下的file1复制到/test3 目录，并将文件名改为file2,可输入以下命令：</p>
+<pre><code class="hljs undefined">mv /test1/file1 /test3/file2</code></pre>
+
+<p>三、文件删除命令操作（rm）</p>
+<pre><code class="hljs undefined">命令格式：rm [fir] 文件或目录</code></pre>
+
+<p>参数说明：<br>-f:强制删除<br>-i:交互模式，在删除前询问用户是否操作<br>-r:递归删除，常用在目录的删除</p>
+<p>如删除/test目录下的file1文件，可以输入以下命令：</p>
+<pre><code class="hljs undefined">rm -i /test/file1</code></pre>
+
+<h2 id="使用apt-get方法出现的错误，由于上次使用时未正常结束（强制杀死终端），出现再次使用无法再次使用"><a href="#使用apt-get方法出现的错误，由于上次使用时未正常结束（强制杀死终端），出现再次使用无法再次使用" class="headerlink" title="使用apt-get方法出现的错误，由于上次使用时未正常结束（强制杀死终端），出现再次使用无法再次使用"></a>使用apt-get方法出现的错误，由于上次使用时未正常结束（强制杀死终端），出现再次使用无法再次使用</h2><p>如标题所示发生的错误如下所示：<br><img src="/assets/linux/error1.png" srcset="/img/loading.gif" alt="apt-get再次使用错误"><br>解决代码：</p>
+<pre><code class="hljs undefined">强制解锁命令：
+sudo rm /var/cache/apt/archives/lock
+sudo rm /var/lib/dpkg/lock</code></pre>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/linux/">linux</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/07/23/love/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">情思悠悠</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2018/07/21/huoyin/">
+                        <span class="hidden-mobile">佩恩六道</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "linux常见命令汇总&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

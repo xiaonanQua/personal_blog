@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content>
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content>
+  <title>Res2Net - xiaonan</title>
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css">
+
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.18.1/styles/github-gist.min.css">
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_ijqayz9ro8k.css">
+
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- 自定义样式保持在最底部 -->
+
+
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>xiaonan</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              首页</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              分类</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/back1.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2019-09-27 16:17">
+                    星期五, 九月 27日 2019, 4:17 下午
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    733 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    7
+                     分钟
+                  </span>
+                
+
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <a id="more"></a>
+
+<h1 id="Res2Net-一种新的多尺度的骨干架构"><a href="#Res2Net-一种新的多尺度的骨干架构" class="headerlink" title="Res2Net 一种新的多尺度的骨干架构"></a>Res2Net 一种新的多尺度的骨干架构</h1><h3 id="摘要-在众多视觉任务中，多尺度表征特征具有重要意义。近年来，中枢卷积神经网络-CNNs-的发展不断显示出更强的多尺度表示能力，从而在广泛的应用中获得一致的性能提升。然而，大多数现有的方法以分层的方式表示多尺度特性。在本文中，我们提出了一种新的CNNs构建块，即Res2Net，通过在一个残差块内构造类残差的分层连接。Res2Net代表了粒度级别的多尺度特性，并增加了每个网络层的接受域范围。建议的Res2Net块可以插入到最先进的CNN骨干模型，例如，ResNet，ResNeXt，和DLA。我们在所有这些模型上对Res2Net块进行了评估-并在广泛使用的数据集上显示与baselinemodels一致的性能提升，例如。cifar-100和ImageNet。计算机视觉任务的进一步模型简化测试和实验结果，对象检测、类激活映射-CAM-和显著性物体-SOD-检测，进一步验证了theRes2Net相对于最先进的基线方法的优越性。源代码和训练的模型可以在https-mmcheng-net-res2net-找到"><a href="#摘要-在众多视觉任务中，多尺度表征特征具有重要意义。近年来，中枢卷积神经网络-CNNs-的发展不断显示出更强的多尺度表示能力，从而在广泛的应用中获得一致的性能提升。然而，大多数现有的方法以分层的方式表示多尺度特性。在本文中，我们提出了一种新的CNNs构建块，即Res2Net，通过在一个残差块内构造类残差的分层连接。Res2Net代表了粒度级别的多尺度特性，并增加了每个网络层的接受域范围。建议的Res2Net块可以插入到最先进的CNN骨干模型，例如，ResNet，ResNeXt，和DLA。我们在所有这些模型上对Res2Net块进行了评估-并在广泛使用的数据集上显示与baselinemodels一致的性能提升，例如。cifar-100和ImageNet。计算机视觉任务的进一步模型简化测试和实验结果，对象检测、类激活映射-CAM-和显著性物体-SOD-检测，进一步验证了theRes2Net相对于最先进的基线方法的优越性。源代码和训练的模型可以在https-mmcheng-net-res2net-找到" class="headerlink" title="摘要-在众多视觉任务中，多尺度表征特征具有重要意义。近年来，中枢卷积神经网络(CNNs)的发展不断显示出更强的多尺度表示能力，从而在广泛的应用中获得一致的性能提升。然而，大多数现有的方法以分层的方式表示多尺度特性。在本文中，我们提出了一种新的CNNs构建块，即Res2Net，通过在一个残差块内构造类残差的分层连接。Res2Net代表了粒度级别的多尺度特性，并增加了每个网络层的接受域范围。建议的Res2Net块可以插入到最先进的CNN骨干模型，例如，ResNet，ResNeXt，和DLA。我们在所有这些模型上对Res2Net块进行了评估,并在广泛使用的数据集上显示与baselinemodels一致的性能提升，例如。cifar - 100和ImageNet。计算机视觉任务的进一步模型简化测试和实验结果，对象检测、类激活映射(CAM)和显著性物体(SOD)检测，进一步验证了theRes2Net相对于最先进的基线方法的优越性。源代码和训练的模型可以在https://mmcheng.net/res2net/.找到"></a><strong>摘要</strong>-在众多视觉任务中，多尺度表征特征具有重要意义。近年来，中枢卷积神经网络(CNNs)的发展不断显示出更强的多尺度表示能力，从而在广泛的应用中获得一致的性能提升。然而，大多数现有的方法以分层的方式表示多尺度特性。在本文中，我们提出了一种新的CNNs构建块，即Res2Net，通过在一个残差块内构造类残差的分层连接。Res2Net代表了粒度级别的多尺度特性，并增加了每个网络层的接受域范围。建议的Res2Net块可以插入到最先进的CNN骨干模型，例如，ResNet，ResNeXt，和DLA。我们在所有这些模型上对Res2Net块进行了评估,并在广泛使用的数据集上显示与baselinemodels一致的性能提升，例如。cifar - 100和ImageNet。计算机视觉任务的进一步模型简化测试和实验结果，对象检测、类激活映射(CAM)和显著性物体(SOD)检测，进一步验证了theRes2Net相对于最先进的基线方法的优越性。源代码和训练的模型可以在<a href="https://mmcheng.net/res2net/.找到" target="_blank" rel="noopener">https://mmcheng.net/res2net/.找到</a></h3><h3 id="索引词-多尺度，深度学习。"><a href="#索引词-多尺度，深度学习。" class="headerlink" title="索引词-多尺度，深度学习。"></a><strong>索引词</strong>-多尺度，深度学习。</h3><h2 id="1-导论"><a href="#1-导论" class="headerlink" title="1.导论"></a><strong>1.导论</strong></h2><p>如图1所示，视觉模式在自然场景中以多尺度出现。首先，物体可能以不同的大小出现在一张图像中，例如，沙发和杯子大小不同。其次，一个对象的基本上下文信息可能占据比对象本身更大的区域。例如，我们需要依靠大桌子作为背景来更好地辨别放在上面的小黑点是杯子还是笔架。最后，从不同的尺度感知信息对于理解零件以及用于细粒度分类和语义分割等任务的对象是必不可少的。因此，为视觉认知任务的多尺度刺激设计好的特征至关重要，包括图像分类、对象检测、注意力预测、目标跟踪、动作识别、语义分割、显著对象检测、对象提议、骨架提取、立体匹配和边缘检测。不出所料，多尺度特征已经广泛应用于传统特征设计和深度学习。在视觉任务中获得多尺度表示需要特征提取器使用大范围的接受域来以不同的尺度描述对象/部分/上下文。卷积神经网络(CNNs)通过一堆卷积运算符自然地学习从粗到精的多尺度特征。中枢神经系统固有的多尺度特征提取能力导致了解决众多视觉任务的有效表示。如何设计更高效的网络架构是进一步提高CNNs性能的关键。</p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/image-classification/">image classification</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/10/18/tricks/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">使用卷积神经网络图像分类的技巧包</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/09/25/refining_dan/">
+                        <span class="hidden-mobile">深度炼丹之路--one day</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Res2Net&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
