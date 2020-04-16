@@ -8,7 +8,7 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/avatar.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -16,7 +16,7 @@
   <meta name="description" content>
   <meta name="author" content="John Doe">
   <meta name="keywords" content>
-  <title>服务器使用指南 - xiaonan</title>
+  <title>服务器使用指南-小南</title>
 
   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css">
@@ -45,7 +45,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>xiaonan</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>小南</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -138,7 +138,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    7.2k 字
+                    6.8k 字
                   </span>
                 
 
@@ -148,7 +148,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    82
+                    77
                      分钟
                   </span>
                 
@@ -180,83 +180,10 @@
               <blockquote>
 <p>本篇团队服务器使用指南，主要解决用户远程使用服务器计算资源，多版本python管理等问题。收录常见的服务器系统问题。github地址：<a href="https://github.com/xiaonanQua/serverdoc" target="_blank" rel="noopener">https://github.com/xiaonanQua/serverdoc</a></p>
 </blockquote>
+<a id="more"></a>
 <blockquote>
 <p>@Author：小南</p>
 </blockquote>
-<a id="more"></a>
-<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><!-- TOC -->
-
-<ul>
-<li><a href="#目录">目录</a></li>
-<li><a href="#一食用方法">一、食用方法</a><ul>
-<li><a href="#11必备技巧">1.1、必备技巧</a></li>
-<li><a href="#12用户类">1.2、用户类</a><ul>
-<li><a href="#121linux用户ubuntu系列">1.2.1、Linux用户（Ubuntu系列）</a></li>
-<li><a href="#122windows用户">1.2.2、Windows用户</a></li>
-</ul>
-</li>
-<li><a href="#13管理员类">1.3、管理员类</a></li>
-</ul>
-</li>
-<li><a href="#二配置本地和远程机器的ssh">二、配置本地和远程机器的SSH</a><ul>
-<li><a href="#21-linux系统ubuntu系列">2.1、 Linux系统（Ubuntu系列）</a><ul>
-<li><a href="#211安装openssh-client">2.1.1、安装openssh-client</a></li>
-<li><a href="#212安装openssh-server">2.1.2、安装openssh-server</a></li>
-<li><a href="#213ssh常见服务命令">2.1.3、ssh常见服务命令</a></li>
-<li><a href="#214ssh连接操作">2.1.4、ssh连接操作</a></li>
-</ul>
-</li>
-<li><a href="#22windows系统">2.2、windows系统</a><ul>
-<li><a href="#221通过xshell使用密钥连接linux">2.2.1、通过Xshell使用密钥连接Linux</a></li>
-</ul>
-</li>
-<li><a href="#23-参考文献">2.3、 参考文献</a></li>
-</ul>
-</li>
-<li><a href="#三使用pyenv对多版本的python进行管理">三、使用pyenv对多版本的python进行管理</a><ul>
-<li><a href="#31安装pyenv">3.1、安装pyenv</a><ul>
-<li><a href="#311预先准备满足后续安装python包的要求直接复制到终端即可">3.1.1、预先准备（满足后续安装python包的要求，直接复制到终端即可）</a></li>
-<li><a href="#312安装两者各选其一推荐第一种">3.1.2、安装（两者各选其一，推荐第一种）</a></li>
-<li><a href="#313配置环境将pyenv加入bashrc中这是当前用户中若是root则修改bash_profile-">3.1.3、配置环境（将pyenv加入.bashrc中，这是当前用户中。若是root，则修改.bash_profile ）</a></li>
-<li><a href="#314更新pyenv">3.1.4、更新pyenv</a></li>
-<li><a href="#315删除pyenv">3.1.5、删除pyenv</a></li>
-</ul>
-</li>
-<li><a href="#32配置及管理多个python版本">3.2、配置及管理多个python版本</a><ul>
-<li><a href="#321安装python版本">3.2.1、安装python版本</a></li>
-<li><a href="#322卸载python版本">3.2.2、卸载python版本</a></li>
-<li><a href="#323pyenv的三个基础命令">3.2.3、pyenv的三个基础命令</a></li>
-<li><a href="#324各个python版本切换操作">3.2.4、各个python版本切换操作</a></li>
-</ul>
-</li>
-<li><a href="#33配置虚拟环境及jupyter使用虚拟环境">3.3、配置虚拟环境及jupyter使用虚拟环境</a><ul>
-<li><a href="#331创建虚拟环境">3.3.1、创建虚拟环境</a></li>
-<li><a href="#332jupyter使用虚拟环境">3.3.2、Jupyter使用虚拟环境</a></li>
-</ul>
-</li>
-<li><a href="#34参考文献">3.4、参考文献</a></li>
-</ul>
-</li>
-<li><a href="#四通过ssh本地调用远程计算资源pycharmjupyterlab配置">四、通过SSH本地调用远程计算资源（Pycharm，JupyterLab配置）</a><ul>
-<li><a href="#41linux系统ubuntu系列">4.1、Linux系统（Ubuntu系列）</a><ul>
-<li><a href="#411pycharm版本20193实现">4.1.1、Pycharm(版本2019.3)实现</a></li>
-<li><a href="#412jupyterlab实现">4.1.2、JupyterLab实现</a></li>
-</ul>
-</li>
-<li><a href="#42windows系统">4.2、Windows系统</a><ul>
-<li><a href="#421pycharm版本20193实现">4.2.1、Pycharm(版本2019.3)实现</a></li>
-<li><a href="#422jupyterlab实现">4.2.2、JupyterLab实现</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#5常见系统问题">5、常见系统问题</a><ul>
-<li><a href="#51防止黑客攻击">5.1、防止黑客攻击</a></li>
-<li><a href="#52参考文献">5.2、参考文献</a></li>
-</ul>
-</li>
-</ul>
-<!-- /TOC -->
 <h1 id="一、食用方法"><a href="#一、食用方法" class="headerlink" title="一、食用方法"></a>一、食用方法</h1><blockquote>
 <p>指南分为两类食用方法，用户类，管理员类。用户只需遵循指南进行配置，完成日常所需。系统管理员类需仔细阅读指南的整体配置流程。</p>
 </blockquote>
@@ -649,7 +576,7 @@ pyenv versions  //查看当前文件夹的版本
                     
                     
                       <a href="/2019/12/07/nlp/">
-                        <span class="hidden-mobile">词向量</span>
+                        <span class="hidden-mobile">词向量及其模型</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

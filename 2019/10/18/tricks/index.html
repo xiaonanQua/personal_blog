@@ -8,7 +8,7 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/avatar.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -16,7 +16,7 @@
   <meta name="description" content>
   <meta name="author" content="John Doe">
   <meta name="keywords" content>
-  <title>使用卷积神经网络图像分类的技巧包 - xiaonan</title>
+  <title>论文翻译-使用卷积神经网络图像分类的技巧包-小南</title>
 
   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css">
@@ -45,7 +45,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>xiaonan</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>小南</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -178,6 +178,10 @@
             
             <article class="markdown-body">
               <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+<blockquote>
+<p>本篇博客摘录并翻译一篇论文（未完待续。。。）</p>
+</blockquote>
 <a id="more"></a>
 
 <h1 id="3-有效训练"><a href="#3-有效训练" class="headerlink" title="3 有效训练"></a>3 有效训练</h1><h2 id="3-1-大批次训练"><a href="#3-1-大批次训练" class="headerlink" title="3.1 大批次训练"></a>3.1 大批次训练</h2><h3 id="线性缩放学习率"><a href="#线性缩放学习率" class="headerlink" title="线性缩放学习率"></a>线性缩放学习率</h3><p>在使用小批次进行随机数据的训练，增加数据批次没有改变随机梯度的期望而减少了方差。换一句话说，一个大批次大小减少梯度的噪音。因此我们可以提高学习率，以沿梯度方向的相反方向获得更大的改进。<strong>特别，如果我们遵循ResNet原论文中的对于批次大小为256时，初始学习率设置成0.1。然后，当改变一个更大的批次大小为b，我们将增加初始学习率为0.1×b/256.</strong></p>
@@ -249,7 +253,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/image-classification/">image classification</a>
+                      <a class="hover-with-bg" href="/tags/论文翻译/">论文翻译</a>
                     
                   </div>
                 
@@ -264,7 +268,7 @@
                     
                       <a href="/2019/12/01/ration/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">在神经编码中的理性想法</span>
+                        <span class="hidden-mobile">论文翻译-在神经编码中的理性想法</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -272,8 +276,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2019/09/27/Res2Net/">
-                        <span class="hidden-mobile">Res2Net</span>
+                      <a href="/2019/09/25/refining_dan/">
+                        <span class="hidden-mobile">深度炼丹之路--one day</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -413,7 +417,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "使用卷积神经网络图像分类的技巧包&nbsp;",
+        "论文翻译-使用卷积神经网络图像分类的技巧包&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
